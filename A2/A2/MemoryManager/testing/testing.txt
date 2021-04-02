@@ -1,0 +1,45 @@
+NAME : Rushabh Prajapati
+ASSIGNMENT 2
+INSTRUCTOR : Calin Anton
+LAB INSTRUCTOR: Saleh Hanan
+PURPOSE: Testing Strategy
+
+1)For testing, firstly tried calls to myMalloc(),
+Example: myMalloc(3)  --> returns 4
+         myMalloc(6)  --> returns 16
+         myMalloc(20) --> returns 32
+         myMalloc(23) --> returns 60
+         myMalloc(24) --> returns 92
+which showed that, myMalloc returns pointer to where the user data begins in
+each block
+
+2)After that I called outputMemory()
+  to check block status, start of the memory block, end of the memory block and 
+  block size, which showed up like,
+
+3) After that I used myFree to free memory
+Example myFree(P3), 
+--> I used a middle chunk so that I know if my 
+    helper functions is_leftchunk_free() or is_rightchunk_free, tell me if the left or right chunks are free.
+    which they are not, as of yet.
+myFree(P2)
+--> Free P2.
+--> Which will have it's right chunk P3 free, so they will colease with each other to form a big chunk.
+
+4) outputMemory()
+--> To check the status of the free , coleased and allocaetd blocks.
+
+5) Try some more calls to myMalloc(), which will show me, if the memory is assigned to the coleased memory
+regions or not.
+myMalloc(7)
+myMalloc(12)
+
+6) outputMemory() 
+Calling outputMemory to check the status of the recent myMalloc calls. 
+
+7) myMalloc(65532)
+--> And at last trying to access more than accesible memory.
+--> No memory Allocated
+
+So, this was my approach to check for all the helper functions that I have made and that they are correctly working.
+Thank you

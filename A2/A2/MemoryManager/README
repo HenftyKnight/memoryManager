@@ -1,0 +1,62 @@
+NAME : Rushabh Prajapati
+ASSIGNMENT 2
+INSTRUCTOR : Calin Anton
+LAB INSTRUCTOR: Saleh Hanan
+PURPOSE: Read me file for all the files submitted.
+
+1) memManager.h
+ --> Header file for memManager.c 
+ 
+    --> void initialize_myMemory(void)
+        Initializes the block of memory with F_size, E_size, F_offset and E_offset
+
+    --> RELP  myMalloc(size_t size)
+        Allocates the requested bytes, size, and returns a realtive pointer (RELP) to the 
+        beginning  of the allocated memory.     
+    
+    --> void initial_FEsizes(RELP initial_ptr, RELP *f_size, RELP *e_size)
+        Function for assining F_SIZE, E_SIZE, for using in each function to reduce code repetition.
+
+    --> unsigned short align4(unsigned short num)
+        Finding the nearest Multiple of 4
+
+    --> unsigned short isFree(RELP ptr)
+        Function for checking if the chunk is_free or not
+
+    --> void assign_requested_block(RELP initial_ptr, size_t size)
+        Assigns a block of memory to the user, as a helper function for myMalloc.
+        after assigning f_size and e_size, this function updates f_size's and e_size's, 
+        every myMalloc call.
+
+    --> void shifting_freed_block(RELP initial_ptr, unsigned short num_bytes)
+        This function is helpful when we free a big chunk or colease small chunks to
+         form a big chunk where the f_size and e_size of those individual chunks need 
+         to be changed depending on the memory allocated.
+
+    --> unsigned short is_leftchunk_free(RELP ptr)
+        Function for checking if the chunk on the left of the currently freed
+        chunk is free or not, i.e if e_size's last bit = 0, means left chunk is 
+        free and we can colease it with the current chunk to make a bigger chunk
+        of memory.
+    
+    --> unsigned short is_rightchunk_free(RELP ptr)
+        Function for checking if the chunk on the right of the currently freed
+        chunk is free or not, i.e if e_size's last bit = 0, means right chunk is free
+        and we can colease it with the current chunk to make a bigger chunk of memory
+
+    --> merging_left(RELP ptr)
+        merging the chunk to the left of the currect chunk
+
+    --> merging_right(RELP ptr)
+        merging the pointer to the right of the current chunk.
+
+    --> void outputMemory(void);
+        Outputs all blocks of Memory and their status
+
+2) memManager.c
+--> Contains all the functions mentioned in memManager.h
+--> All the functions are implemented in memManager.c function
+
+3) main.c
+--> Main file containing calls to the functions in memManager.c
+--> printing output calls of myMalloc(), myFree() and outputMemory.

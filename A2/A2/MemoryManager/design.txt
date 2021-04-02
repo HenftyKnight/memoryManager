@@ -1,0 +1,41 @@
+NAME : Rushabh Prajapati
+ASSIGNMENT 2
+INSTRUCTOR : Calin Anton
+LAB INSTRUCTOR: Saleh Hanan
+PURPOSE: File for the design of memManager
+
+--> Outline of the program
+3 files --> memManager.h, memManager.c, main.c
+
+-->For memory block implemenatation, I have used sbrk() because we had to make a whole
+big chunk of memory and to allocate and free memory from that block only.
+In initialization : original block contained RELP pointers to f_size, f_offset, e_size and e_offset.
+
+For memory allocation, I made 6 helper functions for myMalloc().
+--> memory was allocated if enough space was available, and the RELP pointer was returned at 
+the start of memory block and e_size was made 1, technically chunk_size + 1.
+
+-->The difficulty here was allocating memory to the coleased chunks, I had to do a lot of mapping
+on paper to stay updated with the values, but by making helper functions like
+isFree(), assigning_requested_block(), initial_FEsizes() helped me in checking if the chunk is free or not,
+if memory is assigned or not and initializing of F_size and E_size.
+
+For freeing memory, it was pretty straight forward to free the allocated chunks of memory, by traversing 
+through each chunk and substracting - 1 from e_size of that chunk indicating chunk is now free.
+--> Hard part here was coleasion of memory, for which we need to check the e_size of previous and the next 
+chunk, so for implemenatation of I made 2 helper function is_leftchunk_free() and is_rightchunk_free() to 
+check if the chunks are free or not.
+
+--> After checking the e_sizes of the right and left chunk, for coleasion of memory, I found the 
+f_size and e_size of the left and right chunks and then updating the f_size and e_size according to 
+their sizes, I used merging_left() and merging_right() helper functions to merge the chunks if 
+is_leftchunk_free() and is_rightchunk_free() repectively.
+
+--> For outputMemory, through memory initialization and using pointer arithmetic to traversing 
+through the chunks of memory to where the memory begins which will be initial pointer + 4, then checking
+the block size, and where the user data ends.
+
+--> main.c contains several calls to 
+myMalloc --> Printing pointer's at user data
+myFree   --> Freeing the mentioned region of memory
+outputMemory --> Printing status of all the blocks.
