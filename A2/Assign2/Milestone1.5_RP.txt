@@ -1,0 +1,66 @@
+Milestone 1.5
+Name           : Rushabh Prajapati
+Lab Section    : CMPT-201-X02L(1)
+Lab Instructor : Hanan Saleh
+Instructor     : Calin Anton
+Purpose        : MileStone 1.5 for Assignment 2
+
+Q1: 
+"Malloc Call 2" must not return the same pointer as "Malloc Call 1".
+"Malloc Call 3" might    return the same pointer as "Malloc Call 2".
+"Malloc Call 3" must not return the same pointer as "Malloc Call 1".
+
+My answer will not change because the problem is not with data types, 
+but is with the fact that the Malloc 1 (* buffer) has not been freed yet,  
+Therefore, malloc cannot assign that memory to any other variable.
+
+
+Q2)
+Example for a dynamic memory allocation used case is
+Linked List, where user enters the size and the values in the list.
+At compile time it is uncertain that what size of the list the user 
+decides to pick.
+
+Q3)
+Pointers to the strings, can be freed before the program is executed.
+Therefore, exceeding the life of a particular function, 
+but released before the program exits.
+
+Q4)
+At the beginning, the program takes whole 64kb memory as whole.
+RELP is just an integer, an array indices which can be used 
+assign memory to other variables and programs.
+
+RELP is an unsigned short, it ranges from 0 to 65535. which approximates 
+to 64kb, thus mapping memory region.
+
+If RELP were to transformed into a signed short, then the size still 
+remains 2 bytes, but the range becomes then the range of values is from 
+-32767 to 32767, which makes it hard to map the memory around the region.
+
+Q5)
+val is not a pointer, it is an integer value relative to the start position of the heap (64kb).
+&val returns the pointer to where the unsigned short is stored, 
+but not the address of memory assigned, this could result in undefined behaviour.
+
+Q6)
+With the help of pointer arithematic, the program can increment to access 
+to the Assigned Usable pointer in memory.
+myMemory + Returned Relp = Assigned Pointer Address.
+
+Q7)
+ Before incrementing break, program needs to check if there is 
+ enough space to allocate user, if not NULL should be returned.
+ Freeing memory should first examine chunks before and after 
+ the current RELP, if they are free combine them into whole chunk of memory
+
+Q8)
+   Assigning a larger chunk than requested is a
+   lot of memory will be wasted.
+   e.g If a process requests for a 12 byte chunk and we assign 24 bytes, 
+   A lot of memory is wasted, as we cannot reassign it.
+Q9)In case of not merging adjacent free chunks,
+  a lot of memory will still be wasted, 
+  because each chunk requires 4 bytes to keep track of memory size in it. 
+  Having more chunks will 4 more 
+  bytes per chunk to keep track of them.
